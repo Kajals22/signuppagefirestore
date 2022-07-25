@@ -116,6 +116,14 @@ body {
     img {
       float: left;
     }
+    .icon{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 11px 0px 0px 0px;
+    font-size: 20px;
+    color: black;
+    }
     
     .chat-about {
       float: left;
@@ -188,7 +196,7 @@ body {
         background: #524f4f;
     }
     
-    .other-message {
+    .other-msg {
     background: #0d6efd;}
       
       .other-message:after {

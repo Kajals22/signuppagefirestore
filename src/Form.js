@@ -21,7 +21,7 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let myuuid = uuidv4();
-        firebase.firestore().collection("user-response").add({
+        firebase.firestore().collection("user_response").add({
             name: name,
             email: email,
             password: password,

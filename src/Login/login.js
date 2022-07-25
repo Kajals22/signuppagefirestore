@@ -7,20 +7,43 @@ import "./style.css";
 export default function Login(props) {
   const [name, setname] = useState('');
   const [pass, setpass] = useState('');
+
+
   const navigate = useNavigate();
+  const handleSubmit = (event) => {
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    firebase.firestore().collection("user-response").where('name', '==', name).onSnapshot((snapshot) => {
-      snapshot.docs.map(() => {
-        var a = localStorage.setItem('Name', name);
+    const ref = firebase.firestore().collection('user_response').where('name', "==", name);
+    ref.onSnapshot((value) => {
+      console.log(value.docs.length);
+      value.docs.forEach((item) => {
+        localStorage.setItem('userId', (item.data().userId));
+        localStorage.setItem('Name', (item.data().name));
+        // props.setData();
+        console.log("++++2++++id", item.data().userId)
+        console.log("///////////////", item.data().name)
+        navigate('/output')
       })
-      setname("");
-      setpass("");
-      navigate('/output')
     })
-  }
+
+    
+
+
+    event.preventDefault();
+
+  };
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   firebase.firestore().collection("user_response").where('name', '==', name).onSnapshot((snapshot) => {
+  //     snapshot.docs.map(() => {
+  //       var a = localStorage.setItem('Name', name);
+  //     })
+  //     setname("");
+  //     setpass("");
+  //     navigate('/output')
+  //   })
+  // }
   const Signup = () => {
     navigate('/form')
   }
